@@ -48,10 +48,10 @@ const MyApp = () => {
           <ZMPRouter>
             <AnimationRoutes>
               <Route path="/" element={<HomePage />} />
-              {/* <Route path="/about" element={<About />} />
+              <Route path="/about" element={<About />} />
               <Route path="/form" element={<Form />} />
               <Route path="/user" element={<User />} />
-              <Route path="/wheel" element={<Wheel />} />  //Thêm route cho vòng quay */}
+              <Route path="/wheel" element={<Wheel />} />  //Thêm route cho vòng quay
             </AnimationRoutes>
           </ZMPRouter>
         </SnackbarProvider>
