@@ -1,18 +1,58 @@
 .wheel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
     text-align: center;
-    margin-top: 20px;
 }
 
 .wheel {
-    width: 150px;
-    height: 150px;
-    background: conic-gradient(#FFD700 0% 33%, #FF4500 33% 66%, #1E90FF 66% 100%);
-    border-radius: 50%;
-    border: 5px solid #000;
-    margin: 20px auto;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pin {
+    position: absolute;
+    top: 39%;
+    left: 37%;
+    width: 80px;
+    transform-origin: 50% 60%; /* Kim sẽ xoay quanh điểm gốc */
     transition: transform 3s ease-out;
 }
 
-.spinning {
-    transform: rotate(720deg); /* Quay 2 vòng */
+.spin-button {
+    margin-top: 320px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Ẩn thanh cuộn */
+}
+
+.wheel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Căn giữa theo chiều dọc */
+    overflow: hidden;
+}
+
+.winning-message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5722; /* Màu cam nổi bật */
+    margin-top: 20px;
+    text-align: center;
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffa000;
 }
