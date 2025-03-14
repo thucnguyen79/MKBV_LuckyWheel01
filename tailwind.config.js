@@ -1,9 +1,21 @@
+// module.exports = {
+//   purge: {
+//     enabled: true,
+//     content: ['./src/**/*.{js,jsx,ts,tsx,vue}'],
+//   },
+//   theme: {
+//     extend: {},
+//   },
+// };
+
+
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.{js,jsx,ts,tsx,vue}'],
-  },
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html"
+  ],
   theme: {
     extend: {},
   },
+  plugins: [],
 };
