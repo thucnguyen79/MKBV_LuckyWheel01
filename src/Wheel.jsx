@@ -10,15 +10,20 @@ import Prize3 from "./assets/3.png";
 import Prize4 from "./assets/4.png";
 import Prize5 from "./assets/5.png";
 import Prize6 from "./assets/6.png";
+import Prize7 from "./assets/7.png";
+import Prize8 from "./assets/8.png";
 
-const prizes = [Prize1, Prize2, Prize3, Prize4, Prize5, Prize6];
+const prizes = [Prize1, Prize2, Prize3, Prize4, Prize5, Prize6, Prize7, Prize8]; // Danh sách ảnh giải thưởng
+// Tên giải thưởng tương ứng với ảnh
 const prizeNames = [
-    "Máy chơi game",
-    "Túi mù",
-    "Voucher",
-    "iPhone",
-    "Ly giữ nhiệt",
-    "Tai phone"
+    "Voucher 5%",
+    "Voucher 5% cho đơn hàng tiếp theo",
+    "Voucher 10%",
+    "Voucher 15%",
+    "Voucher 20%",
+    "Áo mưa thời trang",
+    "Áo mưa thời trang",
+    "Thêm một lượt quay",
 ];
 
 export default function Wheel() {
@@ -32,11 +37,12 @@ export default function Wheel() {
         if (isSpinning) return;
 
         setIsSpinning(true);
+        setSelectedPrize(No); // Hiển thị ảnh No.png khi bắt đầu quay
         const randomIndex = Math.floor(Math.random() * prizes.length);
 
         // Tạo số vòng quay tối thiểu (5 vòng) và dừng tại ô trúng
         const extraRounds = 5;
-        const newRotation = rotation + (extraRounds * 360) + (randomIndex * 60);
+        const newRotation = rotation + (extraRounds * 360) + (randomIndex * 45);
 
         setRotation(newRotation);
 
@@ -65,6 +71,7 @@ export default function Wheel() {
                 className="pin"
                 style={{ transform: `rotate(${rotation}deg)` }}
                 alt="Kim quay"
+                onClick={spinWheel} // Thêm sự kiện onClick
             />
 
             {/* Thông báo trúng thưởng */}
