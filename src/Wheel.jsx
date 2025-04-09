@@ -31,12 +31,14 @@ export default function Wheel() {
     const [rotation, setRotation] = useState(0);
     const [selectedPrize, setSelectedPrize] = useState(No); // Ảnh vòng quay cố định
     const [winningMessage, setWinningMessage] = useState(""); // Nội dung thông báo
+    const [showWelcomeMessage, setShowWelcomeMessage] = useState(true); // State mới cho thông báo chào mừng
 
 
     const spinWheel = () => {
         if (isSpinning) return;
 
         setIsSpinning(true);
+        setShowWelcomeMessage(false); // Ẩn thông báo chào mừng khi bắt đầu quay
         setSelectedPrize(No); // Hiển thị ảnh No.png khi bắt đầu quay
         const randomIndex = Math.floor(Math.random() * prizes.length);
 
@@ -51,17 +53,24 @@ export default function Wheel() {
             setSelectedPrize(prizes[randomIndex]); // Cập nhật ảnh giải thưởng
             setWinningMessage(`🎉 Chúc mừng bạn đã trúng giải: ${prizeNames[randomIndex]}!`); // Cập nhật thông báo
             
-            // Reset kim về vị trí ban đầu sau 3 giây
+            // Reset kim về vị trí ban đầu sau 1 giây
             setTimeout(() => {
                 // setRotation(rotation % 360); // Đưa kim về vị trí chuẩn (không reset về 0, tránh nhảy ngược)
                 setRotation(0); // Reset kim về vị trí ban đầu
                 setIsSpinning(false);
-            }, 3000);
+            }, 1000);
         }, 3000);        
     };
 
     return (
         <div className="wheel-container">
+            {/* Thông báo chào mừng - chỉ hiển thị khi mới vào trang */}
+            {showWelcomeMessage && (
+                <div className="welcome-message">
+                    <h2>Chào mừng đến với trò chơi Vòng quay may mắn matkinhbenhvien.com</h2>
+                </div>
+            )}
+            
             {/* Vòng quay cố định */}
             <img src={selectedPrize} className="wheel" alt="Vòng quay" />
 
@@ -74,8 +83,8 @@ export default function Wheel() {
                 onClick={spinWheel} // Thêm sự kiện onClick
             />
 
-            {/* Thông báo trúng thưởng */}
-            {winningMessage && <p className="winning-message">{winningMessage}</p>}
+            {/* Thông báo trúng thưởng - chỉ hiển thị khi có thông báo và KHÔNG đang quay */}
+            {winningMessage && !isSpinning && <p className="winning-message">{winningMessage}</p>}
 
             {/* Nút quay số */}
             <button onClick={spinWheel} disabled={isSpinning} className="spin-button">

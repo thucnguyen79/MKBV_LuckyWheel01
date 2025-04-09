@@ -1,0 +1,181 @@
+.button-container {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.fancy-button {
+  position: relative;
+  width: 220px;
+  height: 80px;
+  border-radius: 15px; /* Bo góc thay vì hình tròn */
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.fancy-button:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+.fancy-button:active {
+  transform: scale(0.95);
+}
+
+.button-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px; /* Bo góc giống với nút */
+  background: linear-gradient(135deg, #ff416c, #ff4b2b, #f7b733, #fc4a1a);
+  background-size: 300% 300%;
+  animation: gradient-shift 5s ease infinite, pulse 2s ease-in-out infinite;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.button-glow {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 15px; /* Bo góc giống với nút */
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0;
+  z-index: 2;
+  animation: glow 3s ease-in-out infinite;
+}
+
+.button-text {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: row; /* Chuyển thành hàng ngang */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.play-text {
+  margin-left: 10px; /* Khoảng cách giữa icon và text */
+  font-size: 20px;
+  letter-spacing: 1px;
+  animation: bounce 1.5s ease infinite;
+}
+
+/* Animations */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); } /* Giảm độ phóng to để phù hợp với nút chữ nhật */
+  100% { transform: scale(1); }
+}
+
+@keyframes glow {
+  0% { opacity: 0; transform: scale(0.95) translateX(-5px); }
+  25% { opacity: 0.5; }
+  50% { opacity: 0; transform: scale(1.05) translateX(5px); }
+  75% { opacity: 0.3; }
+  100% { opacity: 0; transform: scale(0.95) translateX(-5px); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-3px); }
+  60% { transform: translateY(-2px); }
+}
+
+/* Thêm hiệu ứng click */
+.fancy-button:active .button-background {
+  animation-play-state: paused;
+  background-position: 100% 50%;
+}
+
+.fancy-button:active .button-glow {
+  opacity: 0.7;
+}
+
+/* Định dạng cho nút kiểm tra */
+.check-button-container {
+  margin-bottom: 30px; /* Tạo khoảng cách với các nút khác */
+}
+
+.check-button {
+  position: relative;
+  width: 300px; /* Rộng hơn để chứa được text dài hơn */
+  height: 70px; /* Cao hơn nút OA một chút */
+  border-radius: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.check-button .button-background {
+  /* Màu gradient khác với các nút khác */
+  background: linear-gradient(135deg, #11998e, #38ef7d, #00c9ff, #1dbd90);
+  background-size: 300% 300%;
+  animation: gradient-shift 5s ease infinite, pulse 2s ease-in-out infinite;
+}
+
+.check-button:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.check-button:active {
+  transform: scale(0.95);
+}
+
+.check-button .play-text {
+  font-size: 18px; /* Lớn hơn nút OA, nhỏ hơn nút CHƠI NGAY */
+  font-weight: bold;
+}
+
+/* Style cho nút bị disable */
+.check-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.check-button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Style cho modal lỗi */
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+}
+
+.error-content p {
+  margin: 8px 0;
+  color: #333;
+}
